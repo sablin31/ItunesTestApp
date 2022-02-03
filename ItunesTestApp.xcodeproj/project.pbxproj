@@ -7,25 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		702E313327A85B24005E28DD /* AlbumsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313227A85B24005E28DD /* AlbumsTableViewCell.swift */; };
+		702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */; };
+		702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */; };
+		702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313827ABA6DD005E28DD /* AppUtility.swift */; };
 		70BC753027A5CE8C001C5C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */; };
 		70BC753227A5CE8C001C5C49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */; };
-		70BC753427A5CE8C001C5C49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753327A5CE8C001C5C49 /* ViewController.swift */; };
-		70BC753727A5CE8C001C5C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70BC753527A5CE8C001C5C49 /* Main.storyboard */; };
+		70BC753427A5CE8C001C5C49 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753327A5CE8C001C5C49 /* AuthorizationViewController.swift */; };
 		70BC753A27A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753827A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld */; };
 		70BC753C27A5CE8F001C5C49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70BC753B27A5CE8F001C5C49 /* Assets.xcassets */; };
-		70BC753F27A5CE8F001C5C49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70BC753D27A5CE8F001C5C49 /* LaunchScreen.storyboard */; };
+		70BC754A27A5D304001C5C49 /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC754927A5D304001C5C49 /* SingUpViewController.swift */; };
+		70BC754C27A5D315001C5C49 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC754B27A5D315001C5C49 /* AlbumsViewController.swift */; };
+		70BC754E27A5D32C001C5C49 /* DetailAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC754D27A5D32C001C5C49 /* DetailAlbumViewController.swift */; };
+		70BC755027A5D33C001C5C49 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC754F27A5D33C001C5C49 /* UserInfoViewController.swift */; };
+		70BC755327A5DD4A001C5C49 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC755227A5DD4A001C5C49 /* UIStackView + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		702E313227A85B24005E28DD /* AlbumsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewCell.swift; sourceTree = "<group>"; };
+		702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController + Extension.swift"; sourceTree = "<group>"; };
+		702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsCollectionViewCell.swift; sourceTree = "<group>"; };
+		702E313827ABA6DD005E28DD /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		70BC752C27A5CE8C001C5C49 /* ItunesTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		70BC753327A5CE8C001C5C49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		70BC753627A5CE8C001C5C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70BC753327A5CE8C001C5C49 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		70BC753927A5CE8C001C5C49 /* ItunesTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItunesTestApp.xcdatamodel; sourceTree = "<group>"; };
 		70BC753B27A5CE8F001C5C49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		70BC753E27A5CE8F001C5C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70BC754027A5CE8F001C5C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70BC754927A5D304001C5C49 /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
+		70BC754B27A5D315001C5C49 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		70BC754D27A5D32C001C5C49 /* DetailAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAlbumViewController.swift; sourceTree = "<group>"; };
+		70BC754F27A5D33C001C5C49 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		70BC755227A5DD4A001C5C49 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		702E313127A85B03005E28DD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				702E313227A85B24005E28DD /* AlbumsTableViewCell.swift */,
+				702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		70BC752327A5CE8C001C5C49 = {
 			isa = PBXGroup;
 			children = (
@@ -58,16 +81,54 @@
 		70BC752E27A5CE8C001C5C49 /* ItunesTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */,
-				70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */,
-				70BC753327A5CE8C001C5C49 /* ViewController.swift */,
-				70BC753527A5CE8C001C5C49 /* Main.storyboard */,
-				70BC753B27A5CE8F001C5C49 /* Assets.xcassets */,
-				70BC753D27A5CE8F001C5C49 /* LaunchScreen.storyboard */,
-				70BC754027A5CE8F001C5C49 /* Info.plist */,
-				70BC753827A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld */,
+				70BC755127A5D343001C5C49 /* Extensions */,
+				70BC754827A5CEFB001C5C49 /* Controllers */,
+				70BC754727A5CEE3001C5C49 /* DataBase */,
+				70BC754627A5CEB6001C5C49 /* SupportingFiles */,
 			);
 			path = ItunesTestApp;
+			sourceTree = "<group>";
+		};
+		70BC754627A5CEB6001C5C49 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				70BC753B27A5CE8F001C5C49 /* Assets.xcassets */,
+				70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */,
+				70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */,
+				70BC754027A5CE8F001C5C49 /* Info.plist */,
+				702E313827ABA6DD005E28DD /* AppUtility.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		70BC754727A5CEE3001C5C49 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				70BC753827A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		70BC754827A5CEFB001C5C49 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				702E313127A85B03005E28DD /* Cells */,
+				70BC753327A5CE8C001C5C49 /* AuthorizationViewController.swift */,
+				70BC754927A5D304001C5C49 /* SingUpViewController.swift */,
+				70BC754B27A5D315001C5C49 /* AlbumsViewController.swift */,
+				70BC754D27A5D32C001C5C49 /* DetailAlbumViewController.swift */,
+				70BC754F27A5D33C001C5C49 /* UserInfoViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		70BC755127A5D343001C5C49 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				70BC755227A5DD4A001C5C49 /* UIStackView + Extension.swift */,
+				702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,9 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70BC753F27A5CE8F001C5C49 /* LaunchScreen.storyboard in Resources */,
 				70BC753C27A5CE8F001C5C49 /* Assets.xcassets in Resources */,
-				70BC753727A5CE8C001C5C49 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,33 +200,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70BC753427A5CE8C001C5C49 /* ViewController.swift in Sources */,
+				70BC753427A5CE8C001C5C49 /* AuthorizationViewController.swift in Sources */,
+				70BC755327A5DD4A001C5C49 /* UIStackView + Extension.swift in Sources */,
+				70BC755027A5D33C001C5C49 /* UserInfoViewController.swift in Sources */,
+				702E313327A85B24005E28DD /* AlbumsTableViewCell.swift in Sources */,
 				70BC753027A5CE8C001C5C49 /* AppDelegate.swift in Sources */,
+				702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */,
+				70BC754C27A5D315001C5C49 /* AlbumsViewController.swift in Sources */,
+				70BC754A27A5D304001C5C49 /* SingUpViewController.swift in Sources */,
+				702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */,
+				702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */,
 				70BC753227A5CE8C001C5C49 /* SceneDelegate.swift in Sources */,
 				70BC753A27A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld in Sources */,
+				70BC754E27A5D32C001C5C49 /* DetailAlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		70BC753527A5CE8C001C5C49 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70BC753627A5CE8C001C5C49 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		70BC753D27A5CE8F001C5C49 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70BC753E27A5CE8F001C5C49 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		70BC754127A5CE8F001C5C49 /* Debug */ = {
@@ -295,10 +344,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTH6ENQ3G9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ItunesTestApp/Info.plist;
+				INFOPLIST_FILE = ItunesTestApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,7 +359,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -323,10 +372,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTH6ENQ3G9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ItunesTestApp/Info.plist;
+				INFOPLIST_FILE = ItunesTestApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -338,7 +387,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
