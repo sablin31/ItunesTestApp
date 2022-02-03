@@ -9,11 +9,11 @@ import UIKit
 
 class AuthorizationViewController: UIViewController {
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
+//    private let scrollView: UIScrollView = {
+//        let scrollView = UIScrollView()
+//        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        return scrollView
+//    }()
     
     private let backgroundView: UIView = {
         let view = UIView()
@@ -82,7 +82,7 @@ class AuthorizationViewController: UIViewController {
     private var buttonsStackView = UIStackView()
     
     deinit {
-        removeKeyboardNotification()
+        //removeKeyboardNotification()
         removeDarkModeNotification()
     }
     
@@ -99,8 +99,8 @@ class AuthorizationViewController: UIViewController {
                                        spacing: 10,
                                        distribution: .fillEqually)
         
-        view.addSubview(scrollView)
-        scrollView.addSubview(backgroundView)
+        view.addSubview(backgroundView)
+        //scrollView.addSubview(backgroundView)
         backgroundView.addSubview(loginIcon)
         backgroundView.addSubview(textFieldsStackView)
         backgroundView.addSubview(buttonsStackView)
@@ -110,7 +110,7 @@ class AuthorizationViewController: UIViewController {
         super.viewDidLoad()
         setupDelegate()
         setConstraints()
-        registerKeyboardNotification()
+        //registerKeyboardNotification()
         registerDarkModeNotification()
     }
     
@@ -156,35 +156,7 @@ extension AuthorizationViewController: UITextFieldDelegate {
         return true
     }
 }
-//MARK: - Keyboard Show Hide
-extension AuthorizationViewController {
-    private func registerKeyboardNotification(){
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-    
-    private func removeKeyboardNotification(){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo
-        let keyboardHeight = (userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 2)
-    }
-    
-    @objc private func keyboardWillHide(notification: Notification) {
-        scrollView.contentOffset = CGPoint.zero
-    }
-}
+
 //MARK: - Switch color on Darkmode
 extension AuthorizationViewController {
     private func registerDarkModeNotification(){
@@ -219,16 +191,16 @@ extension AuthorizationViewController {
 extension AuthorizationViewController {
     private func setConstraints() {
  
-            NSLayoutConstraint.activate([
-                scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-            ])
+//            NSLayoutConstraint.activate([
+//                scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+//                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+//                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+//                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+//            ])
    
             NSLayoutConstraint.activate([
-                backgroundView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-                backgroundView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+                backgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                backgroundView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                 backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor),
                 backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor)
             ])

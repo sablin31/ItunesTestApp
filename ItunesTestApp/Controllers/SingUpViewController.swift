@@ -151,7 +151,7 @@ class SingUpViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(backgroundView)
         backgroundView.addSubview(loginLabel)
-
+        
         elementStackView = UIStackView(arrangedSubviews: [firstNameTextField,
                                                           firstNameValidLabel,
                                                           lastNameTextField,
@@ -190,7 +190,7 @@ class SingUpViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -299,12 +299,12 @@ extension SingUpViewController {
             ])
         }
         
-                    NSLayoutConstraint.activate([
-                        backgroundView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-                        backgroundView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-                        backgroundView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-                        backgroundView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-                    ])
+        NSLayoutConstraint.activate([
+            backgroundView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            backgroundView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            backgroundView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        ])
         
         NSLayoutConstraint.activate([
             loginLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
@@ -323,7 +323,7 @@ extension SingUpViewController {
             createAccountButton.heightAnchor.constraint(equalToConstant: 40),
             returnButton.heightAnchor.constraint(equalToConstant: 40)
         ])
-
+        
         NSLayoutConstraint.activate([
             buttonsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
             buttonsStackView.topAnchor.constraint(equalTo: elementStackView.bottomAnchor, constant: 30),
@@ -368,15 +368,15 @@ extension SingUpViewController {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
                 self.view.backgroundColor = .systemFill
-//                loginLabel.textColor = .white
-//                emailTextField.textColor = .white
-//                passwordTextField.textColor = .white
+                //                loginLabel.textColor = .white
+                //                emailTextField.textColor = .white
+                //                passwordTextField.textColor = .white
             }
             else {
                 self.view.backgroundColor = .white
-//                loginLabel.textColor = .black
-//                emailTextField.textColor = .black
-//                passwordTextField.textColor = .black
+                //                loginLabel.textColor = .black
+                //                emailTextField.textColor = .black
+                //                passwordTextField.textColor = .black
             }
         }
     }
