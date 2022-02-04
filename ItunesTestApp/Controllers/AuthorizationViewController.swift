@@ -9,12 +9,6 @@ import UIKit
 
 class AuthorizationViewController: UIViewController {
     
-//    private let scrollView: UIScrollView = {
-//        let scrollView = UIScrollView()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        return scrollView
-//    }()
-    
     private let backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -22,13 +16,13 @@ class AuthorizationViewController: UIViewController {
     }()
     
     let loginIcon: UIImageView = {
-           let image = UIImageView()
-            let configuration = UIImage.SymbolConfiguration(pointSize: 60, weight: .regular, scale: .medium)
-           image.image = UIImage(systemName: "key", withConfiguration: configuration)
+        let image = UIImageView()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 60, weight: .regular, scale: .medium)
+        image.image = UIImage(systemName: "key", withConfiguration: configuration)
         image.tintColor = .gray
-           image.translatesAutoresizingMaskIntoConstraints = false
-           return image
-        }()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
     private let loginLabel: UILabel = {
         let label = UILabel()
@@ -82,7 +76,6 @@ class AuthorizationViewController: UIViewController {
     private var buttonsStackView = UIStackView()
     
     deinit {
-        //removeKeyboardNotification()
         removeDarkModeNotification()
     }
     
@@ -100,17 +93,16 @@ class AuthorizationViewController: UIViewController {
                                        distribution: .fillEqually)
         
         view.addSubview(backgroundView)
-        //scrollView.addSubview(backgroundView)
         backgroundView.addSubview(loginIcon)
         backgroundView.addSubview(textFieldsStackView)
         backgroundView.addSubview(buttonsStackView)
+        applicationDidBecomeActive()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
         setConstraints()
-        //registerKeyboardNotification()
         registerDarkModeNotification()
     }
     
@@ -173,7 +165,7 @@ extension AuthorizationViewController {
     @objc func applicationDidBecomeActive() {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
-                self.view.backgroundColor = .systemFill
+                self.view.backgroundColor = .darkGray
                 loginLabel.textColor = .white
                 emailTextField.textColor = .white
                 passwordTextField.textColor = .white
@@ -190,20 +182,12 @@ extension AuthorizationViewController {
 //MARK: - SetConstraints
 extension AuthorizationViewController {
     private func setConstraints() {
- 
-//            NSLayoutConstraint.activate([
-//                scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//            ])
-   
-            NSLayoutConstraint.activate([
-                backgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                backgroundView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor),
-                backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor)
-            ])
+        NSLayoutConstraint.activate([
+            backgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backgroundView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
         
         NSLayoutConstraint.activate([
             loginIcon.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
@@ -221,7 +205,7 @@ extension AuthorizationViewController {
             registrationButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.heightAnchor.constraint(equalToConstant: 40)
         ])
-    
+        
         NSLayoutConstraint.activate([
             buttonsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
             buttonsStackView.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 30),

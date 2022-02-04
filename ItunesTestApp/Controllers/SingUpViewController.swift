@@ -116,7 +116,7 @@ class SingUpViewController: UIViewController {
     
     private let createAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .black
+        button.backgroundColor = .brown
         button.setTitle("Create account", for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 10
@@ -147,7 +147,6 @@ class SingUpViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.addSubview(backgroundView)
         backgroundView.addSubview(loginLabel)
@@ -174,6 +173,7 @@ class SingUpViewController: UIViewController {
                                        spacing: 10,
                                        distribution: .fillEqually)
         backgroundView.addSubview(buttonsStackView)
+        applicationDidBecomeActive()
     }
     
     override func viewDidLoad() {
@@ -190,7 +190,6 @@ class SingUpViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -268,20 +267,20 @@ extension SingUpViewController {
     @objc private func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardHeight = (userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 2)
+        
+        if emailTextField.isFirstResponder || passwordTextField.isFirstResponder {
+            scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 2)
+        }
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
         scrollView.contentOffset = CGPoint.zero
     }
 }
-
-
 //MARK: - SetConstraints
 
 extension SingUpViewController {
     private func setConstraints() {
-        
         if #available(iOS 11, *) {
             let guide = view.safeAreaLayoutGuide
             NSLayoutConstraint.activate([
@@ -367,16 +366,10 @@ extension SingUpViewController {
     @objc func applicationDidBecomeActive() {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
-                self.view.backgroundColor = .systemFill
-                //                loginLabel.textColor = .white
-                //                emailTextField.textColor = .white
-                //                passwordTextField.textColor = .white
+                self.view.backgroundColor = .black
             }
             else {
                 self.view.backgroundColor = .white
-                //                loginLabel.textColor = .black
-                //                emailTextField.textColor = .black
-                //                passwordTextField.textColor = .black
             }
         }
     }
