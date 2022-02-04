@@ -10,31 +10,28 @@ import UIKit
 class DetailAlbumViewController: UIViewController {
     
     private let albumLogo: UIImageView = {
-       let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        let imageView = UIImageView()
+        imageView.backgroundColor = .gray
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let albumNameLabel: UILabel = {
-       let label = UILabel()
-        label.numberOfLines = 0
+        let label = UILabel()
         label.text = "Name album"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let artistNameLabel: UILabel = {
-       let label = UILabel()
-        label.numberOfLines = 0
+        let label = UILabel()
         label.text = "Name artist"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let releaseDataLabel: UILabel = {
-       let label = UILabel()
-        label.numberOfLines = 0
+        let label = UILabel()
         label.text = "Release date"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,17 +39,16 @@ class DetailAlbumViewController: UIViewController {
     
     private let trackCountLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         label.text = "10 tracks"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let collectionView: UICollectionView = {
-       let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.bounces = false
         collectionView.register(SongsCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,21 +57,8 @@ class DetailAlbumViewController: UIViewController {
     
     private var stackView = UIStackView()
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-        setConstraints()
-        setDelegate()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-    
-    private func setupViews() {
+    override func loadView() {
+        super.loadView()
         view.backgroundColor = .white
         view.addSubview(albumLogo)
         
@@ -89,6 +72,33 @@ class DetailAlbumViewController: UIViewController {
         
         view.addSubview(stackView)
         view.addSubview(collectionView)
+        checkColorTheme()
+    }
+    
+    deinit {
+        removeDarkModeNotification()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setConstraints()
+        setDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkColorTheme()
+        AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+    }
+//
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        collectionView.collectionViewLayout.invalidateLayout()
+//    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
     }
     
     private func setDelegate() {
@@ -98,7 +108,6 @@ class DetailAlbumViewController: UIViewController {
 }
 
 //MARK: - CollectionView Delegate
-
 extension DetailAlbumViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
@@ -108,7 +117,6 @@ extension DetailAlbumViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SongsCollectionViewCell
         cell.nameSongLabel.text = "Name song"
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -119,12 +127,10 @@ extension DetailAlbumViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
-//MARK - SetConstaints
-
+//MARK: - SetConstaints
 extension DetailAlbumViewController {
-
-    private func setConstraints(){
     
+    private func setConstraints(){
         if #available(iOS 11, *) {
             let guide = view.safeAreaLayoutGuide
             NSLayoutConstraint.activate([
@@ -163,5 +169,30 @@ extension DetailAlbumViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -10)
         ])
+    }
+}
+//MARK: - Switch color on Darkmode
+extension DetailAlbumViewController {
+    private func registerDarkModeNotification(){
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkColorTheme),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+    }
+    
+    private func removeDarkModeNotification(){
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc func checkColorTheme()
+    {
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                self.view.backgroundColor = .black
+            }
+            else {
+                self.view.backgroundColor = .white
+            }
+        }
     }
 }

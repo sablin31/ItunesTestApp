@@ -10,14 +10,13 @@ import UIKit
 class SongsCollectionViewCell: UICollectionViewCell {
     
     let nameSongLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setConstraints()
     }
     

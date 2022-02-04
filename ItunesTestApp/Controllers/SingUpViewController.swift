@@ -173,7 +173,13 @@ class SingUpViewController: UIViewController {
                                        spacing: 10,
                                        distribution: .fillEqually)
         backgroundView.addSubview(buttonsStackView)
-        applicationDidBecomeActive()
+        firstNameValidLabel.textColor = .clear
+        lastNameValidLabel.textColor = .clear
+        ageValidLabel.textColor = .clear
+        phoneValidLabel.textColor = .clear
+        emailValidLabel.textColor = .clear
+        passwordValidLabel.textColor = .clear
+        checkColorTheme()
     }
     
     override func viewDidLoad() {
@@ -188,6 +194,7 @@ class SingUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkColorTheme()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
@@ -354,7 +361,7 @@ extension UITextField {
 extension SingUpViewController {
     private func registerDarkModeNotification(){
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationDidBecomeActive),
+                                               selector: #selector(checkColorTheme),
                                                name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
     }
@@ -363,7 +370,8 @@ extension SingUpViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
-    @objc func applicationDidBecomeActive() {
+    @objc func checkColorTheme()
+    {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
                 self.view.backgroundColor = .black

@@ -10,8 +10,8 @@ import UIKit
 class AlbumsTableViewCell: UITableViewCell {
     
     private let albumLogo: UIImageView = {
-       let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        let imageView = UIImageView()
+        imageView.backgroundColor = .gray
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -28,6 +28,7 @@ class AlbumsTableViewCell: UITableViewCell {
     private let artistNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Artist name"
+        label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -36,6 +37,7 @@ class AlbumsTableViewCell: UITableViewCell {
     private let trackCountLabel: UILabel = {
         let label = UILabel()
         label.text = "16 tracks"
+        label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -74,7 +76,7 @@ class AlbumsTableViewCell: UITableViewCell {
         self.addSubview(stackView)
     }
     
-
+    
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
@@ -95,6 +97,5 @@ class AlbumsTableViewCell: UITableViewCell {
             stackView.leadingAnchor.constraint(equalTo: albumLogo.trailingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
         ])
-        
     }
 }

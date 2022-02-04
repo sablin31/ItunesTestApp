@@ -11,33 +11,38 @@ class AlbumsViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         tableView.register(AlbumsTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
     private let searchController = UISearchController(searchResultsController: nil)
-
+    
+    deinit {
+        removeDarkModeNotification()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = .white
+        view.addSubview(tableView)
+        checkColorTheme()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        setupViews()
         setupDelegate()
         setConstraints()
         setNavigationBar()
         setupSearchController()
-    }
-    
-    private func setupViews() {
-        view.backgroundColor = .white
-        view.addSubview(tableView)
+        registerDarkModeNotification()
     }
     
     private func setupDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
-        
         searchController.searchBar.delegate = self
     }
     
@@ -45,7 +50,6 @@ class AlbumsViewController: UIViewController {
         navigationItem.title = "Albums"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
-        
         
         let userInfoButton = createCustomButton(selector: #selector(userInfoButtonTapped))
         navigationItem.rightBarButtonItem = userInfoButton
@@ -63,8 +67,8 @@ class AlbumsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkColorTheme()
         AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +87,6 @@ extension AlbumsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumsTableViewCell
-        
         return cell
     }
 }
@@ -105,7 +108,6 @@ extension AlbumsViewController: UITableViewDelegate {
 
 extension AlbumsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         print(searchText)
     }
 }
@@ -131,6 +133,31 @@ extension AlbumsViewController {
                 tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
                 tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             ])
+        }
+    }
+}
+//MARK: - Switch color on Darkmode
+extension AlbumsViewController {
+    private func registerDarkModeNotification(){
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkColorTheme),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+    }
+    
+    private func removeDarkModeNotification(){
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc func checkColorTheme()
+    {
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                self.view.backgroundColor = .black
+            }
+            else {
+                self.view.backgroundColor = .white
+            }
         }
     }
 }

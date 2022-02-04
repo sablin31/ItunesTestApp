@@ -96,7 +96,7 @@ class AuthorizationViewController: UIViewController {
         backgroundView.addSubview(loginIcon)
         backgroundView.addSubview(textFieldsStackView)
         backgroundView.addSubview(buttonsStackView)
-        applicationDidBecomeActive()
+        checkColorTheme()
     }
     
     override func viewDidLoad() {
@@ -113,6 +113,7 @@ class AuthorizationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkColorTheme()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         emailTextField.text?.removeAll()
@@ -153,7 +154,7 @@ extension AuthorizationViewController: UITextFieldDelegate {
 extension AuthorizationViewController {
     private func registerDarkModeNotification(){
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationDidBecomeActive),
+                                               selector: #selector(checkColorTheme),
                                                name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
     }
@@ -162,7 +163,7 @@ extension AuthorizationViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
-    @objc func applicationDidBecomeActive() {
+    @objc func checkColorTheme() {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
                 self.view.backgroundColor = .darkGray
