@@ -9,6 +9,13 @@ import UIKit
 
 class UserInfoViewController: UIViewController {
     
+    private var firstName = ""
+    private var lastName = ""
+    private var ageString = ""
+    private var phone = ""
+    private var email = ""
+    private var password = ""
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -29,6 +36,7 @@ class UserInfoViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        title = "Active User"
         view.backgroundColor = .white
         view.addSubview(tableView)
         view.addSubview(logoutButton)
@@ -44,6 +52,7 @@ class UserInfoViewController: UIViewController {
         setupDelegate()
         setConstraints()
         registerDarkModeNotification()
+        setModel()
     }
     
     private func setupDelegate() {
@@ -65,48 +74,69 @@ class UserInfoViewController: UIViewController {
     @objc private func logoutButtonTapped(){
         self.navigationController?.popToRootViewController(animated: true)
     }
+    
+    private func setModel() {
+        if let activeUser = DataUsers.shared.activeUser
+        {
+            firstName = activeUser.firstName
+            lastName = activeUser.lastName
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            ageString = dateFormatter.string(from: activeUser.age)
+            phone = activeUser.phone
+            email = activeUser.email
+            password = activeUser.password
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
 extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: nil)
             var configuration = cell.defaultContentConfiguration()
-            configuration.text = "First Name"
+            configuration.text = "First name: " + firstName
             cell.contentConfiguration = configuration
             return cell
         }
         else if indexPath.row == 1 {
             let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: nil)
             var configuration = cell.defaultContentConfiguration()
-            configuration.text = "Last Name"
+            configuration.text = "Last name: " + lastName
             cell.contentConfiguration = configuration
             return cell
         }
         else if indexPath.row == 2 {
             let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: nil)
             var configuration = cell.defaultContentConfiguration()
-            configuration.text = "Age"
+            configuration.text = "Age: " + ageString
             cell.contentConfiguration = configuration
             return cell
         }
         else  if indexPath.row == 3 {
             let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: nil)
             var configuration = cell.defaultContentConfiguration()
-            configuration.text = "Login"
+            configuration.text = "Phone: " + phone
+            cell.contentConfiguration = configuration
+            return cell
+        }
+        else if indexPath.row == 4 {
+            let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+            var configuration = cell.defaultContentConfiguration()
+            configuration.text = "E-mail: " + email
             cell.contentConfiguration = configuration
             return cell
         }
         else {
             let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: nil)
             var configuration = cell.defaultContentConfiguration()
-            configuration.text = "Password"
+            configuration.text = "Password: " + password
             cell.contentConfiguration = configuration
             return cell
         }

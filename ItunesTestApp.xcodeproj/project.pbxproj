@@ -12,6 +12,8 @@
 		702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */; };
 		702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313827ABA6DD005E28DD /* AppUtility.swift */; };
 		7035378927B13E8900C60305 /* Locale + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035378827B13E8900C60305 /* Locale + Extension.swift */; };
+		7097BAF627B25671000128A4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097BAF527B25671000128A4 /* UserDefaultsManager.swift */; };
+		7097BAF927B25732000128A4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097BAF827B25732000128A4 /* UserModel.swift */; };
 		70A8251627B0F2BE00AEE8B5 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8251527B0F2BE00AEE8B5 /* String + Extension.swift */; };
 		70BC753027A5CE8C001C5C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */; };
 		70BC753227A5CE8C001C5C49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */; };
@@ -31,6 +33,8 @@
 		702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsCollectionViewCell.swift; sourceTree = "<group>"; };
 		702E313827ABA6DD005E28DD /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		7035378827B13E8900C60305 /* Locale + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale + Extension.swift"; sourceTree = "<group>"; };
+		7097BAF527B25671000128A4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		7097BAF827B25732000128A4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		70A8251527B0F2BE00AEE8B5 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		70BC752C27A5CE8C001C5C49 /* ItunesTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7097BAF427B2564F000128A4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7097BAF527B25671000128A4 /* UserDefaultsManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7097BAF727B25708000128A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7097BAF827B25732000128A4 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		70BC752327A5CE8C001C5C49 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +105,8 @@
 		70BC752E27A5CE8C001C5C49 /* ItunesTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				7097BAF727B25708000128A4 /* Models */,
+				7097BAF427B2564F000128A4 /* Services */,
 				70BC755127A5D343001C5C49 /* Extensions */,
 				70BC754827A5CEFB001C5C49 /* Controllers */,
 				70BC754727A5CEE3001C5C49 /* DataBase */,
@@ -212,7 +234,9 @@
 				70BC755027A5D33C001C5C49 /* UserInfoViewController.swift in Sources */,
 				702E313327A85B24005E28DD /* AlbumsTableViewCell.swift in Sources */,
 				70BC753027A5CE8C001C5C49 /* AppDelegate.swift in Sources */,
+				7097BAF627B25671000128A4 /* UserDefaultsManager.swift in Sources */,
 				702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */,
+				7097BAF927B25732000128A4 /* UserModel.swift in Sources */,
 				70BC754C27A5D315001C5C49 /* AlbumsViewController.swift in Sources */,
 				70BC754A27A5D304001C5C49 /* SingUpViewController.swift in Sources */,
 				702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */,

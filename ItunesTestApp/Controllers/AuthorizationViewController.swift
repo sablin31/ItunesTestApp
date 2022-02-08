@@ -15,20 +15,13 @@ class AuthorizationViewController: UIViewController {
         return view
     }()
     
-    let loginIcon: UIImageView = {
+    private let loginIcon: UIImageView = {
         let image = UIImageView()
         let configuration = UIImage.SymbolConfiguration(pointSize: 60, weight: .regular, scale: .medium)
         image.image = UIImage(systemName: "key", withConfiguration: configuration)
         image.tintColor = .gray
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-    }()
-    
-    private let loginLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Log In"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     private let emailTextField: UITextField = {
@@ -50,17 +43,6 @@ class AuthorizationViewController: UIViewController {
         return textField
     }()
     
-    private let registrationButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .brown
-        button.setTitle("Registration", for: .normal)
-        button.tintColor = .white
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .gray
@@ -72,6 +54,18 @@ class AuthorizationViewController: UIViewController {
         return button
     }()
     
+    private let registrationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .brown
+        button.setTitle("Registration", for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let alertMessage = UIAlertController(title: "Warning", message: "", preferredStyle: UIAlertController.Style.alert)
     private var textFieldsStackView = UIStackView()
     private var buttonsStackView = UIStackView()
     
@@ -104,6 +98,7 @@ class AuthorizationViewController: UIViewController {
         setupDelegate()
         setConstraints()
         registerDarkModeNotification()
+        alertMessage.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
     }
     
     private func setupDelegate() {
@@ -136,8 +131,38 @@ class AuthorizationViewController: UIViewController {
     @objc private func loginButtonTapped() {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        let albumViewController = AlbumsViewController()
-        self.navigationController?.pushViewController(albumViewController,animated: true)
+        let mail = emailTextField.text?.lowercased() ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        if mail.isEmpty || password.isEmpty {
+            alertMessage.message = "E-mail and Password can not be empty"
+            self.present(alertMessage, animated: true, completion: nil)
+        } else {
+            let user = findUserDataUsers(mail: mail)
+            if user == nil {
+                alertMessage.message = "Not found user in this E-mail"
+                self.present(alertMessage, animated: true, completion: nil)
+            }
+            else if user?.password != password {
+                alertMessage.message = "Wrong password!"
+                self.present(alertMessage, animated: true, completion: nil)
+            } else {
+                let albumViewController = AlbumsViewController()
+                self.navigationController?.pushViewController(albumViewController,animated: true)
+                guard let activeUser = user else {return}
+                DataUsers.shared.saveActiveUser(user: activeUser)
+            }
+        }
+    }
+    
+    private func findUserDataUsers(mail: String) -> User? {
+        let dataUsers = DataUsers.shared.users
+        for user in dataUsers {
+            if user.email == mail {
+                return user
+            }
+        }
+        return nil
     }
 }
 
@@ -167,18 +192,24 @@ extension AuthorizationViewController {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
                 self.view.backgroundColor = .darkGray
-                loginLabel.textColor = .white
                 emailTextField.textColor = .white
                 passwordTextField.textColor = .white
             }
             else {
                 self.view.backgroundColor = .white
-                loginLabel.textColor = .black
                 emailTextField.textColor = .black
                 passwordTextField.textColor = .black
             }
         }
     }
+    
+//    func resetDefaults() {
+//        let defaults = UserDefaults.standard
+//        let dictionary = defaults.dictionaryRepresentation()
+//        dictionary.keys.forEach { key in
+//            defaults.removeObject(forKey: key)
+//        }
+//    }
 }
 //MARK: - SetConstraints
 extension AuthorizationViewController {

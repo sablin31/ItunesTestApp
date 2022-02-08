@@ -137,7 +137,10 @@ class SingUpViewController: UIViewController {
     }()
     
     // create the alert
-    private let alert = UIAlertController(title: "Congratulation", message: "Registration is succsessfuly! Please Log In!", preferredStyle: UIAlertController.Style.alert)
+    private let alertSuccsess = UIAlertController(title: "Congratulation", message: "Registration is succsessfuly! Please Log In!", preferredStyle: UIAlertController.Style.alert)
+    
+    // create the alert
+    private let alertFailure = UIAlertController(title: "", message: "", preferredStyle: UIAlertController.Style.alert)
     
     private var elementStackView = UIStackView()
     private var buttonsStackView = UIStackView()
@@ -210,6 +213,7 @@ class SingUpViewController: UIViewController {
         // Configure Swipe Gesture Recognizer
         swipeGestureRecognizerRight.direction = .right
         backgroundView.addGestureRecognizer(swipeGestureRecognizerRight)
+        alertFailure.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -390,19 +394,34 @@ extension SingUpViewController: UITextFieldDelegate {
     }
     
     @objc private func createAccountButtonTapped(){
-        print("SignUpButton Tapped")
         
         if firstNameIsValid, lastNameIsValid, ageIsValid, phoneIsValid, emailIsValid, passwordIsValid {
-            print("success")
-            // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
-                self.navigationController?.popToRootViewController(animated: true)
-          }))
-
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-            
-        } else {print("failure")}
+            // Get all value TextField
+            let firstNameText = firstNameTextField.text!
+            let lastNameText = lastNameTextField.text!
+            let age = datePicker.date
+            let phoneNumberText = phoneNumberTextField.text!
+            let emailText = emailTextField.text!.lowercased()
+            let passwordText = passwordTextField.text!
+            // Save user in UserBase
+            if DataUsers.shared.saveUser(firstName: firstNameText,
+                                      lastName: lastNameText,
+                                      phone: phoneNumberText,
+                                      email: emailText,
+                                      password: passwordText,
+                                         age: age) {
+                alertSuccsess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in self.navigationController?.popToRootViewController(animated: true) }))
+                self.present(alertSuccsess, animated: true, completion: nil)
+            } else {
+                alertFailure.title = "Warning"
+                alertFailure.message = "User in this e-mail already exist"
+                self.present(alertFailure, animated: true, completion: nil)
+            }
+        } else {
+            alertFailure.title = "Warning"
+            alertFailure.message = "Registration is not complete! Please check all fields!"
+            self.present(alertFailure, animated: true, completion: nil)
+        }
     }
     
     @objc private func returnButtonTapped(){
@@ -430,7 +449,6 @@ extension SingUpViewController: UITextFieldDelegate {
     @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
         returnButtonTapped()
     }
-    
 }
 
 //MARK: - Keyboard Show Hide
