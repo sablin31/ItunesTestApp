@@ -83,6 +83,7 @@ class DetailAlbumViewController: UIViewController {
         super.viewDidLoad()
         setConstraints()
         setDelegate()
+        registerDarkModeNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,11 +91,6 @@ class DetailAlbumViewController: UIViewController {
         checkColorTheme()
         AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
-//
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        collectionView.collectionViewLayout.invalidateLayout()
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

@@ -11,6 +11,8 @@
 		702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */; };
 		702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */; };
 		702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313827ABA6DD005E28DD /* AppUtility.swift */; };
+		7035378927B13E8900C60305 /* Locale + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035378827B13E8900C60305 /* Locale + Extension.swift */; };
+		70A8251627B0F2BE00AEE8B5 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8251527B0F2BE00AEE8B5 /* String + Extension.swift */; };
 		70BC753027A5CE8C001C5C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */; };
 		70BC753227A5CE8C001C5C49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */; };
 		70BC753427A5CE8C001C5C49 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC753327A5CE8C001C5C49 /* AuthorizationViewController.swift */; };
@@ -28,6 +30,8 @@
 		702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController + Extension.swift"; sourceTree = "<group>"; };
 		702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsCollectionViewCell.swift; sourceTree = "<group>"; };
 		702E313827ABA6DD005E28DD /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		7035378827B13E8900C60305 /* Locale + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale + Extension.swift"; sourceTree = "<group>"; };
+		70A8251527B0F2BE00AEE8B5 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		70BC752C27A5CE8C001C5C49 /* ItunesTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +100,6 @@
 				70BC752F27A5CE8C001C5C49 /* AppDelegate.swift */,
 				70BC753127A5CE8C001C5C49 /* SceneDelegate.swift */,
 				70BC754027A5CE8F001C5C49 /* Info.plist */,
-				702E313827ABA6DD005E28DD /* AppUtility.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -125,8 +128,11 @@
 		70BC755127A5D343001C5C49 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				702E313827ABA6DD005E28DD /* AppUtility.swift */,
 				70BC755227A5DD4A001C5C49 /* UIStackView + Extension.swift */,
 				702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */,
+				70A8251527B0F2BE00AEE8B5 /* String + Extension.swift */,
+				7035378827B13E8900C60305 /* Locale + Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 			files = (
 				70BC753427A5CE8C001C5C49 /* AuthorizationViewController.swift in Sources */,
 				70BC755327A5DD4A001C5C49 /* UIStackView + Extension.swift in Sources */,
+				70A8251627B0F2BE00AEE8B5 /* String + Extension.swift in Sources */,
 				70BC755027A5D33C001C5C49 /* UserInfoViewController.swift in Sources */,
 				702E313327A85B24005E28DD /* AlbumsTableViewCell.swift in Sources */,
 				70BC753027A5CE8C001C5C49 /* AppDelegate.swift in Sources */,
@@ -210,6 +217,7 @@
 				70BC754A27A5D304001C5C49 /* SingUpViewController.swift in Sources */,
 				702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */,
 				702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */,
+				7035378927B13E8900C60305 /* Locale + Extension.swift in Sources */,
 				70BC753227A5CE8C001C5C49 /* SceneDelegate.swift in Sources */,
 				70BC753A27A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld in Sources */,
 				70BC754E27A5D32C001C5C49 /* DetailAlbumViewController.swift in Sources */,

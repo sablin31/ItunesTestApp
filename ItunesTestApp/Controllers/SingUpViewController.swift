@@ -136,10 +136,21 @@ class SingUpViewController: UIViewController {
         return button
     }()
     
+    // create the alert
+    private let alert = UIAlertController(title: "Congratulation", message: "Registration is succsessfuly! Please Log In!", preferredStyle: UIAlertController.Style.alert)
+    
     private var elementStackView = UIStackView()
     private var buttonsStackView = UIStackView()
     private let datePicker = UIDatePicker()
     
+    // Check constant valid fields
+    private var firstNameIsValid = false
+    private var lastNameIsValid = false
+    private var ageIsValid = false
+    private var phoneIsValid = false
+    private var emailIsValid = false
+    private var passwordIsValid = false
+
     deinit {
         removeKeyboardNotification()
         removeDarkModeNotification()
@@ -182,6 +193,10 @@ class SingUpViewController: UIViewController {
         checkColorTheme()
     }
     
+    let nameValidType: String.ValidTypes = .name
+    let emailValidType: String.ValidTypes = .email
+    let passwordValidType: String.ValidTypes = .password
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -190,6 +205,11 @@ class SingUpViewController: UIViewController {
         setupDatePicker()
         registerKeyboardNotification()
         registerDarkModeNotification()
+        // Initialize Swipe Gesture Recognizer
+        let swipeGestureRecognizerRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
+        // Configure Swipe Gesture Recognizer
+        swipeGestureRecognizerRight.direction = .right
+        backgroundView.addGestureRecognizer(swipeGestureRecognizerRight)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -218,10 +238,171 @@ class SingUpViewController: UIViewController {
         datePicker.clipsToBounds = false
         datePicker.tintColor = .black
         datePicker.contentHorizontalAlignment = .left
+        datePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
+    }
+    
+    //MARK: - Set TextField check Value
+    private func setTextField(textField: UITextField, label: UILabel, validType: String.ValidTypes,validMessage: String, wrongMessage: String, string: String, range: NSRange) -> Bool{
+        let text = (textField.text ?? "") + string
+        let resultString: String
+        var result = false
+        
+        if range.length == 1 {
+            let end = text.index(text.startIndex, offsetBy: text.count - 1)
+            resultString = String(text[text.startIndex..<end])
+        } else {
+            resultString = text
+        }
+        
+        textField.text = resultString
+        
+        if resultString.isValid(validType: validType) {
+            label.text = validMessage
+            label.textColor = .green
+            result = true
+        } else {
+            label.text = wrongMessage
+            label.textColor = .red
+            result = false
+        }
+        
+        return result
+    }
+    
+    //MARK: - Set TextField check Value phone number
+
+    private func setTextFieldPhoneNumber(textField: UITextField, label: UILabel, pattern: String, replacementCharacter: Character, validMessage: String, wrongMessage: String, string: String, range: NSRange) -> Bool {
+        let text = (textField.text ?? "") + string
+        var resultString: String
+        var result = false
+        
+        if range.length == 1 {
+            let end = text.index(text.startIndex, offsetBy: text.count - 1)
+            resultString = String(text[text.startIndex..<end])
+        }
+        else {
+            resultString = text.applyPatternOnNumbers(pattern: pattern, replacementCharacter: replacementCharacter)
+        }
+        // Check first digit - If 8 and Russian Location - Replace +7
+        if resultString.count > 1 {
+            let indexOfFirstDigit = resultString.index(resultString.startIndex, offsetBy: 1)
+            if resultString[indexOfFirstDigit] == "8" { //&& Locale.current.isRussian{
+                resultString.remove(at: indexOfFirstDigit)
+                resultString.insert("7", at: indexOfFirstDigit)
+            }
+        }
+        
+        // Trim extra numbers
+        if resultString.count > pattern.count {
+            let end = resultString.index(resultString.startIndex, offsetBy: pattern.count)
+            resultString = String(resultString[resultString.startIndex..<end])
+            textField.text = resultString
+        }
+        else {textField.text = resultString}
+        
+        // Check validation number
+        if resultString.count == pattern.count {
+            label.text = validMessage
+            label.textColor = .green
+            result = true
+        } else {
+            label.text = wrongMessage
+            label.textColor = .red
+            result = false
+        }
+        return result
+    }
+}
+
+
+//MARK: - UITextFieldDelegate
+
+extension SingUpViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField {
+        case firstNameTextField:
+            firstNameIsValid = setTextField(textField: firstNameTextField,
+                                              label: firstNameValidLabel,
+                                              validType: nameValidType,
+                                              validMessage: "First name is valid",
+                                              wrongMessage: "Only A-Z, min 1 character ",
+                                              string: string,
+                                              range: range)
+        case lastNameTextField:
+            lastNameIsValid = setTextField(textField: lastNameTextField,
+                                             label: lastNameValidLabel,
+                                             validType: nameValidType,
+                                             validMessage: "Last name is valid",
+                                             wrongMessage: "Only A-Z, min 1 character",
+                                             string: string,
+                                             range: range)
+        case emailTextField:
+            emailIsValid = setTextField(textField: emailTextField,
+                                          label: emailValidLabel,
+                                          validType: emailValidType,
+                                          validMessage: "E-mail is valid",
+                                          wrongMessage: "E-mail is not valid",
+                                          string: string,
+                                          range: range)
+        case passwordTextField:
+            passwordIsValid = setTextField(textField: passwordTextField,
+                                             label: passwordValidLabel,
+                                             validType: passwordValidType,
+                                             validMessage: "Password is valid",
+                                             wrongMessage: "Min 6 ch., must A-Z and a-z and 0-9",
+                                             string: string,
+                                             range: range)
+        case phoneNumberTextField:
+            phoneIsValid = setTextFieldPhoneNumber(textField: phoneNumberTextField,
+                                                           label: phoneValidLabel,
+                                                           pattern: "+#(###)###-##-##",
+                                                           replacementCharacter: "#",
+                                                           validMessage: "Phone number is valid",
+                                                           wrongMessage: "Phone number is invalid",
+                                                           string: string,
+                                                           range: range)
+        default:
+            break
+        }
+        return false
+    }
+    
+    private func checkAgeIsValid() -> Bool {
+        let calendar = NSCalendar.current
+        let dateNow = Date()
+        let birthday = datePicker.date
+        
+        let age = calendar.dateComponents([.year], from: birthday, to: dateNow)
+        let ageYear = age.year
+        guard let ageUser = ageYear else {return false}
+        return (ageUser < 18 ? false : true)
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        firstNameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
     }
     
     @objc private func createAccountButtonTapped(){
         print("SignUpButton Tapped")
+        
+        if firstNameIsValid, lastNameIsValid, ageIsValid, phoneIsValid, emailIsValid, passwordIsValid {
+            print("success")
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
+                self.navigationController?.popToRootViewController(animated: true)
+          }))
+
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {print("failure")}
     }
     
     @objc private func returnButtonTapped(){
@@ -231,23 +412,25 @@ class SingUpViewController: UIViewController {
     @objc private func tapReturnDigitalKeyboard() {
         phoneNumberTextField.resignFirstResponder()
     }
-}
-
-//MARK: - UITextFieldDelegate
-
-extension SingUpViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
+    @objc func datePickerChanged(picker: UIDatePicker) {
+        let checkDate = checkAgeIsValid()
+        if checkDate {
+            ageValidLabel.text = "Age is valid"
+            ageValidLabel.textColor = .green
+            ageIsValid = true
+        }
+        else {
+            ageValidLabel.text = "Age must be over 18"
+            ageValidLabel.textColor = .red
+            ageIsValid = false
+        }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        firstNameTextField.resignFirstResponder()
-        lastNameTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
+    @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
+        returnButtonTapped()
     }
+    
 }
 
 //MARK: - Keyboard Show Hide
@@ -277,7 +460,7 @@ extension SingUpViewController {
         
         if emailTextField.isFirstResponder || passwordTextField.isFirstResponder {
             scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 2)
-        }
+        } else { scrollView.contentOffset = CGPoint.zero}
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
