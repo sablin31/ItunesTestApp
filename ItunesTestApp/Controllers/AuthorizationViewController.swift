@@ -138,7 +138,7 @@ class AuthorizationViewController: UIViewController {
             alertMessage.message = "E-mail and Password can not be empty"
             self.present(alertMessage, animated: true, completion: nil)
         } else {
-            let user = findUserDataUsers(mail: mail)
+            let user = findUserOnDataUsers(mail: mail)
             if user == nil {
                 alertMessage.message = "Not found user in this E-mail"
                 self.present(alertMessage, animated: true, completion: nil)
@@ -155,7 +155,7 @@ class AuthorizationViewController: UIViewController {
         }
     }
     
-    private func findUserDataUsers(mail: String) -> User? {
+    private func findUserOnDataUsers(mail: String) -> User? {
         let dataUsers = DataUsers.shared.users
         for user in dataUsers {
             if user.email == mail {
@@ -202,14 +202,6 @@ extension AuthorizationViewController {
             }
         }
     }
-    
-//    func resetDefaults() {
-//        let defaults = UserDefaults.standard
-//        let dictionary = defaults.dictionaryRepresentation()
-//        dictionary.keys.forEach { key in
-//            defaults.removeObject(forKey: key)
-//        }
-//    }
 }
 //MARK: - SetConstraints
 extension AuthorizationViewController {
@@ -245,3 +237,11 @@ extension AuthorizationViewController {
         ])
     }
 }
+
+//    func resetDefaults() {
+//        let defaults = UserDefaults.standard
+//        let dictionary = defaults.dictionaryRepresentation()
+//        dictionary.keys.forEach { key in
+//            defaults.removeObject(forKey: key)
+//        }
+//    }

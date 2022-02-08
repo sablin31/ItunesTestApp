@@ -153,7 +153,7 @@ class SingUpViewController: UIViewController {
     private var phoneIsValid = false
     private var emailIsValid = false
     private var passwordIsValid = false
-
+    
     deinit {
         removeKeyboardNotification()
         removeDarkModeNotification()
@@ -274,7 +274,7 @@ class SingUpViewController: UIViewController {
     }
     
     //MARK: - Set TextField check Value phone number
-
+    
     private func setTextFieldPhoneNumber(textField: UITextField, label: UILabel, pattern: String, replacementCharacter: Character, validMessage: String, wrongMessage: String, string: String, range: NSRange) -> Bool {
         let text = (textField.text ?? "") + string
         var resultString: String
@@ -328,45 +328,45 @@ extension SingUpViewController: UITextFieldDelegate {
         switch textField {
         case firstNameTextField:
             firstNameIsValid = setTextField(textField: firstNameTextField,
-                                              label: firstNameValidLabel,
-                                              validType: nameValidType,
-                                              validMessage: "First name is valid",
-                                              wrongMessage: "Only A-Z, min 1 character ",
-                                              string: string,
-                                              range: range)
+                                            label: firstNameValidLabel,
+                                            validType: nameValidType,
+                                            validMessage: "First name is valid",
+                                            wrongMessage: "Only A-Z, min 1 character ",
+                                            string: string,
+                                            range: range)
         case lastNameTextField:
             lastNameIsValid = setTextField(textField: lastNameTextField,
-                                             label: lastNameValidLabel,
-                                             validType: nameValidType,
-                                             validMessage: "Last name is valid",
-                                             wrongMessage: "Only A-Z, min 1 character",
-                                             string: string,
-                                             range: range)
+                                           label: lastNameValidLabel,
+                                           validType: nameValidType,
+                                           validMessage: "Last name is valid",
+                                           wrongMessage: "Only A-Z, min 1 character",
+                                           string: string,
+                                           range: range)
         case emailTextField:
             emailIsValid = setTextField(textField: emailTextField,
-                                          label: emailValidLabel,
-                                          validType: emailValidType,
-                                          validMessage: "E-mail is valid",
-                                          wrongMessage: "E-mail is not valid",
-                                          string: string,
-                                          range: range)
+                                        label: emailValidLabel,
+                                        validType: emailValidType,
+                                        validMessage: "E-mail is valid",
+                                        wrongMessage: "E-mail is not valid",
+                                        string: string,
+                                        range: range)
         case passwordTextField:
             passwordIsValid = setTextField(textField: passwordTextField,
-                                             label: passwordValidLabel,
-                                             validType: passwordValidType,
-                                             validMessage: "Password is valid",
-                                             wrongMessage: "Min 6 ch., must A-Z and a-z and 0-9",
-                                             string: string,
-                                             range: range)
+                                           label: passwordValidLabel,
+                                           validType: passwordValidType,
+                                           validMessage: "Password is valid",
+                                           wrongMessage: "Min 6 ch., must A-Z and a-z and 0-9",
+                                           string: string,
+                                           range: range)
         case phoneNumberTextField:
             phoneIsValid = setTextFieldPhoneNumber(textField: phoneNumberTextField,
-                                                           label: phoneValidLabel,
-                                                           pattern: "+#(###)###-##-##",
-                                                           replacementCharacter: "#",
-                                                           validMessage: "Phone number is valid",
-                                                           wrongMessage: "Phone number is invalid",
-                                                           string: string,
-                                                           range: range)
+                                                   label: phoneValidLabel,
+                                                   pattern: "+#(###)###-##-##",
+                                                   replacementCharacter: "#",
+                                                   validMessage: "Phone number is valid",
+                                                   wrongMessage: "Phone number is invalid",
+                                                   string: string,
+                                                   range: range)
         default:
             break
         }
@@ -405,10 +405,10 @@ extension SingUpViewController: UITextFieldDelegate {
             let passwordText = passwordTextField.text!
             // Save user in UserBase
             if DataUsers.shared.saveUser(firstName: firstNameText,
-                                      lastName: lastNameText,
-                                      phone: phoneNumberText,
-                                      email: emailText,
-                                      password: passwordText,
+                                         lastName: lastNameText,
+                                         phone: phoneNumberText,
+                                         email: emailText,
+                                         password: passwordText,
                                          age: age) {
                 alertSuccsess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in self.navigationController?.popToRootViewController(animated: true) }))
                 self.present(alertSuccsess, animated: true, completion: nil)
