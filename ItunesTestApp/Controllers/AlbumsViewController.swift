@@ -18,6 +18,8 @@ class AlbumsViewController: UIViewController {
     }()
     
     private let searchController = UISearchController(searchResultsController: nil)
+
+    private var albums = [Album]()
     
     deinit {
         removeDarkModeNotification()
@@ -29,7 +31,7 @@ class AlbumsViewController: UIViewController {
         view.addSubview(tableView)
         checkColorTheme()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -50,13 +52,12 @@ class AlbumsViewController: UIViewController {
         navigationItem.title = "Albums"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
-        
         let userInfoButton = createCustomButton(selector: #selector(userInfoButtonTapped))
         navigationItem.rightBarButtonItem = userInfoButton
     }
     
     private func setupSearchController() {
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Search album"
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
@@ -76,17 +77,42 @@ class AlbumsViewController: UIViewController {
         AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
     }
     
+    private func fetchAlbums(albumName: String) {
+        let urlString = "https://itunes.apple.com/search?term=\(albumName)&entity=album&attribute=albumTerm"
+        NetworkDataFetch.shared.fetchAlbum(urlString: urlString) { [weak self] albumModel, error in
+            if error == nil {
+                guard let albumModel = albumModel else { return }
+                if albumModel.results != [] {
+                    let sortedAlbums = albumModel.results.sorted{ firstItem, secondItem in
+                        return firstItem.collectionName.compare(secondItem.collectionName) == ComparisonResult.orderedAscending
+                    }
+                    self?.albums = sortedAlbums
+                    self?.tableView.reloadData()
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "Album not found", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                    self?.albums = []
+                    self?.tableView.reloadData()
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
 
 extension AlbumsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumsTableViewCell
+        let album = albums[indexPath.row]
+        cell.configurationAlbumCell(album: album)
         return cell
     }
 }
@@ -100,6 +126,9 @@ extension AlbumsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailAlbumViewController = DetailAlbumViewController()
+        let album = albums[indexPath.row]
+        detailAlbumViewController.album = album
+        detailAlbumViewController.title = album.artistName
         navigationController?.pushViewController(detailAlbumViewController, animated: true)
     }
 }
@@ -107,8 +136,10 @@ extension AlbumsViewController: UITableViewDelegate {
 //MARK: - UISearchBarDelegate
 
 extension AlbumsViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar.text != nil {
+            fetchAlbums(albumName: searchBar.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
+        }
     }
 }
 
@@ -117,7 +148,6 @@ extension AlbumsViewController: UISearchBarDelegate {
 extension AlbumsViewController {
     
     private func setConstraints() {
-        
         if #available(iOS 11, *) {
             let guide = view.safeAreaLayoutGuide
             NSLayoutConstraint.activate([

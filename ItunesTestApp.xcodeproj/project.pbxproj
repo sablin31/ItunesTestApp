@@ -11,6 +11,10 @@
 		702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */; };
 		702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */; };
 		702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E313827ABA6DD005E28DD /* AppUtility.swift */; };
+		703246DE27B2F507004AC272 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703246DD27B2F507004AC272 /* AlbumModel.swift */; };
+		703246E127B2F648004AC272 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703246E027B2F648004AC272 /* NetworkRequest.swift */; };
+		703246E327B2F7FB004AC272 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703246E227B2F7FB004AC272 /* NetworkDataFetch.swift */; };
+		703246E527B3F374004AC272 /* SongsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703246E427B3F373004AC272 /* SongsModel.swift */; };
 		7035378927B13E8900C60305 /* Locale + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035378827B13E8900C60305 /* Locale + Extension.swift */; };
 		7097BAF627B25671000128A4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097BAF527B25671000128A4 /* UserDefaultsManager.swift */; };
 		7097BAF927B25732000128A4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097BAF827B25732000128A4 /* UserModel.swift */; };
@@ -32,6 +36,10 @@
 		702E313427A85DBF005E28DD /* UIVIewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController + Extension.swift"; sourceTree = "<group>"; };
 		702E313627A91A63005E28DD /* SongsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsCollectionViewCell.swift; sourceTree = "<group>"; };
 		702E313827ABA6DD005E28DD /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		703246DD27B2F507004AC272 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
+		703246E027B2F648004AC272 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		703246E227B2F7FB004AC272 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
+		703246E427B3F373004AC272 /* SongsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsModel.swift; sourceTree = "<group>"; };
 		7035378827B13E8900C60305 /* Locale + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale + Extension.swift"; sourceTree = "<group>"; };
 		7097BAF527B25671000128A4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7097BAF827B25732000128A4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -70,6 +78,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		703246DF27B2F639004AC272 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				703246E027B2F648004AC272 /* NetworkRequest.swift */,
+				703246E227B2F7FB004AC272 /* NetworkDataFetch.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		7097BAF427B2564F000128A4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				7097BAF827B25732000128A4 /* UserModel.swift */,
+				703246DD27B2F507004AC272 /* AlbumModel.swift */,
+				703246E427B3F373004AC272 /* SongsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -105,6 +124,7 @@
 		70BC752E27A5CE8C001C5C49 /* ItunesTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				703246DF27B2F639004AC272 /* Network */,
 				7097BAF727B25708000128A4 /* Models */,
 				7097BAF427B2564F000128A4 /* Services */,
 				70BC755127A5D343001C5C49 /* Extensions */,
@@ -238,13 +258,17 @@
 				702E313727A91A63005E28DD /* SongsCollectionViewCell.swift in Sources */,
 				7097BAF927B25732000128A4 /* UserModel.swift in Sources */,
 				70BC754C27A5D315001C5C49 /* AlbumsViewController.swift in Sources */,
+				703246E127B2F648004AC272 /* NetworkRequest.swift in Sources */,
 				70BC754A27A5D304001C5C49 /* SingUpViewController.swift in Sources */,
 				702E313527A85DBF005E28DD /* UIVIewController + Extension.swift in Sources */,
 				702E313927ABA6DD005E28DD /* AppUtility.swift in Sources */,
+				703246DE27B2F507004AC272 /* AlbumModel.swift in Sources */,
 				7035378927B13E8900C60305 /* Locale + Extension.swift in Sources */,
 				70BC753227A5CE8C001C5C49 /* SceneDelegate.swift in Sources */,
 				70BC753A27A5CE8C001C5C49 /* ItunesTestApp.xcdatamodeld in Sources */,
 				70BC754E27A5D32C001C5C49 /* DetailAlbumViewController.swift in Sources */,
+				703246E327B2F7FB004AC272 /* NetworkDataFetch.swift in Sources */,
+				703246E527B3F374004AC272 /* SongsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
