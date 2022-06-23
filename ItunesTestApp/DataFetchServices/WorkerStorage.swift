@@ -7,9 +7,9 @@
 
 import Foundation
 
-class DataUsers {
+class WorkerStorage {
     
-    static let shared = DataUsers()
+    static let shared = WorkerStorage()
     
     enum SettingKeys: String {
         case users

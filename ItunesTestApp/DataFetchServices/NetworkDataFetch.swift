@@ -13,8 +13,8 @@ class NetworkDataFetch {
     
     private init() {}
     
-    func fetchAlbum(urlString: String, responce: @escaping (AlbumModel?, Error?) -> Void) {
-        NetworkRequest.shared.requestData(urlString: urlString) { result in
+    func fetchAlbum(url: URL?, responce: @escaping (AlbumModel?, Error?) -> Void) {
+        NetworkRequest.shared.requestData(url: url) { result in
             switch result {
             case .success(let data):
                 do {
@@ -29,9 +29,9 @@ class NetworkDataFetch {
             }
         }
     }
-    
-    func fetchSongs(urlString: String, responce: @escaping (SongsModel?, Error?) -> Void) {
-        NetworkRequest.shared.requestData(urlString: urlString) { result in
+
+    func fetchSongs(url: URL, responce: @escaping (SongsModel?, Error?) -> Void) {
+        NetworkRequest.shared.requestData(url: url) { result in
             switch result {
             case .success(let data):
                 do {
@@ -46,5 +46,4 @@ class NetworkDataFetch {
             }
         }
     }
-    
 }

@@ -12,9 +12,9 @@ class NetworkRequest {
     
     private init() {}
     
-    func requestData(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func requestData(url: URL?, completion: @escaping (Result<Data, Error>) -> Void) {
         
-        guard let url = URL(string: urlString) else {return}
+        guard let url = url else { return }
         
         URLSession.shared.dataTask(with: url) { data, responce, error in
             DispatchQueue.main.async {

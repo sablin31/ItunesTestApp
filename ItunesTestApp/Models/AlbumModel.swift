@@ -9,7 +9,6 @@ import Foundation
 
 struct AlbumModel: Decodable, Equatable {
     let results: [Album]
-    
 }
 
 struct Album: Decodable, Equatable {

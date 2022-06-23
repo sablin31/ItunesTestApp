@@ -3,4 +3,84 @@
    uuid = "D9F4C360-FAB9-4E8B-B74D-BDB1B1FB354B"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "135C8B44-C004-41FE-8555-6DCC0F18DAF6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ItunesTestApp/Services/UserDefaultsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "135C8B44-C004-41FE-8555-6DCC0F18DAF6 - 7d20431a5577e868"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ItunesTestApp.DataUsers.__allocating_init() -&gt; ItunesTestApp.DataUsers"
+                  moduleName = "ItunesTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sablin_lex/Developer/ItunesTestApp/ItunesTestApp/Services/UserDefaultsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "135C8B44-C004-41FE-8555-6DCC0F18DAF6 - bd98eab0ca58e351"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ItunesTestApp.DataUsers.deinit"
+                  moduleName = "ItunesTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sablin_lex/Developer/ItunesTestApp/ItunesTestApp/Services/UserDefaultsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "135C8B44-C004-41FE-8555-6DCC0F18DAF6 - ebf4fb814c66c122"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ItunesTestApp.DataUsers.__deallocating_deinit"
+                  moduleName = "ItunesTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sablin_lex/Developer/ItunesTestApp/ItunesTestApp/Services/UserDefaultsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "135C8B44-C004-41FE-8555-6DCC0F18DAF6 - 7cc6a463d24ccaa5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ItunesTestApp.DataUsers.init() -&gt; ItunesTestApp.DataUsers"
+                  moduleName = "ItunesTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sablin_lex/Developer/ItunesTestApp/ItunesTestApp/Services/UserDefaultsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
